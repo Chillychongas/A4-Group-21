@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class spawnBubble : MonoBehaviour
 {
-
+    public static bool running;
     public GameObject bubblePrefab;
+    
     public float respawnTime = 1.5f;
     private Vector3 outOfScreen;
 
+    public static int onScreenBubbles;
     int tempX, tempY, speedCounter, spawnCounter, respawnCounter;
+
     float x, y;
     void Start()
     {
+        onScreenBubbles = 0;
+        running = true;
         speedCounter = 0;
         spawnCounter = 0;
         respawnCounter = 1;
@@ -23,6 +28,8 @@ public class spawnBubble : MonoBehaviour
     }
     private void spawn()
     {
+        
+
         GameObject temp = Instantiate(bubblePrefab) as GameObject;
         tempX = Random.Range(0, 2);
         tempY = Random.Range(0, 2);
@@ -55,7 +62,7 @@ public class spawnBubble : MonoBehaviour
     
     IEnumerator bubbles()
     {
-        while (true)
+        while (running)
         {
             /*
              * spawn a bubble * respawnCounter every respawnTime seconds
@@ -63,9 +70,11 @@ public class spawnBubble : MonoBehaviour
              * after 15 bubbles have spawned, respawnTime gets set back to 1.5 but respawnCounter gets increased by 1
              */ 
             yield return new WaitForSeconds(respawnTime);
-            for(int i = 0; i < respawnCounter; i++)
+            
+            for (int i = 0; i < respawnCounter; i++)
             {
                 spawn();
+                onScreenBubbles++;
             }
             spawnCounter++;
             if (spawnCounter == 15)

@@ -23,6 +23,7 @@ public class bubbleBehaviour : MonoBehaviour
     {
         UI.scoreCounter++;
         Destroy(gameObject);
+        spawnBubble.onScreenBubbles--;
     }
     void Update()
     {
@@ -32,6 +33,7 @@ public class bubbleBehaviour : MonoBehaviour
             StopCoroutine(despawn());
             Destroy(gameObject);
             UI.missedCounter++;
+            spawnBubble.onScreenBubbles--;
         }
     }
     
