@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class bubbleBehaviour : MonoBehaviour
 {
-    
     Vector3 target, x, y;
     int timer;
     bool alive;
@@ -22,6 +21,7 @@ public class bubbleBehaviour : MonoBehaviour
     }
     void OnMouseUpAsButton()
     {
+        UI.scoreCounter++;
         Destroy(gameObject);
     }
     void Update()
@@ -31,7 +31,7 @@ public class bubbleBehaviour : MonoBehaviour
         {
             StopCoroutine(despawn());
             Destroy(gameObject);
-            //add penalty point
+            UI.missedCounter++;
         }
     }
     
