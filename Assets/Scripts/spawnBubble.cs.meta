@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: b6d9c95eb95c6234fba686d903c941f6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bubblePrefab: {fileID: 6666994259104116517, guid: 7d8ace5a41438874a9ef2bcdcf152b3d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
