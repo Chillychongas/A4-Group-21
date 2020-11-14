@@ -1,7 +1,7 @@
 This document provides who did what in the assignment.
 
 Name: Davanjit Sandhu
--
+- Painting, Main Menu, High Scores
 
 Name: Andrew Ferasol
 -
