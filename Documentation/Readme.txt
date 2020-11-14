@@ -4,7 +4,7 @@ Name: Davanjit Sandhu
 - Painting, Main Menu, High Scores
 
 Name: Andrew Ferasol
--
+- bubble popper
 
 Name: Abdulaziz Khan
 - Organized and assigned tasks, as well worked on BubblePopper with Andrew
