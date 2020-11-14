@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class spawnBubble : MonoBehaviour
 {
-
+    public static bool running;
     public GameObject bubblePrefab;
-    public float respawnTime = 2.0f;
+    
+    public float respawnTime = 1.5f;
     private Vector3 outOfScreen;
 
-    int tempX, tempY, counter;
+    public static int onScreenBubbles;
+    int tempX, tempY, speedCounter, spawnCounter, respawnCounter;
+
     float x, y;
     void Start()
     {
-        counter = 0;
+        onScreenBubbles = 0;
+        running = true;
+        speedCounter = 0;
+        spawnCounter = 0;
+        respawnCounter = 1;
         outOfScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         
 
@@ -21,6 +28,8 @@ public class spawnBubble : MonoBehaviour
     }
     private void spawn()
     {
+        
+
         GameObject temp = Instantiate(bubblePrefab) as GameObject;
         tempX = Random.Range(0, 2);
         tempY = Random.Range(0, 2);
@@ -53,17 +62,34 @@ public class spawnBubble : MonoBehaviour
     
     IEnumerator bubbles()
     {
-        while (true)
+        while (running)
         {
+            /*
+             * spawn a bubble * respawnCounter every respawnTime seconds
+             * after every bubble spawns, reduce respawnTime by 0.1
+             * after 15 bubbles have spawned, respawnTime gets set back to 1.5 but respawnCounter gets increased by 1
+             */ 
             yield return new WaitForSeconds(respawnTime);
-            spawn();
-            counter++;
-            if (counter == 5 && respawnTime - 0.1 > 1.1)
+            
+            for (int i = 0; i < respawnCounter; i++)
+            {
+                spawn();
+                onScreenBubbles++;
+            }
+            spawnCounter++;
+            if (spawnCounter == 15)
+            {
+                spawnCounter = 0;
+                respawnCounter++;
+                respawnTime = 1.5f;
+            }
+
+            speedCounter++;
+            if (speedCounter == 5 && respawnTime - 0.1 > 1.1)
             {
                 respawnTime -= 0.1f;
-                counter = 0;
+                speedCounter = 0;
             }
-            Debug.Log(respawnTime);
         }
     }
 
